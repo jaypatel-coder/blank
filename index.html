@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blank Page Clone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="left">
+      <i class="menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" class="lucide lucide-gallery-horizontal-end">
+          <path d="M2 7v10"></path>
+          <path d="M6 5v14"></path>
+          <rect width="12" height="18" x="10" y="3" rx="2"></rect>
+        </svg>
+      </i>
+    </div>
+    <div class="right">
+      <span id="wordCount">Words: 0</span>
+      <span id="charCount">Characters: 0</span>
+
+      <i   title="Upload"><img src="icons/share.png" alt="share" height="25" width="25" /></i>
+      <i   id="copyBtn" title="copy"><img src="icons/copy.png" alt="copy" height="25" width="25" /></i>
+
+      <div class="menu-button" onclick="toggleMenu(event)">⋯</div>
+    </div>
+
+    <div class="submenu" id="submenu">
+      <h3>Shortcuts</h3>
+      <div class="menu-item" onclick="toggleFullscreen(event)">Full screen <span>Ctrl+Shift+F</span></div>
+      <div class="menu-item" onclick="toggleTheme(event)">Dark Mode <span>Ctrl+Shift+M</span></div>
+      <div class="menu-item" onclick="togglePreview(event)">Show preview <span>Ctrl+Shift+O</span></div>
+      <div class="menu-item" onclick="toggleSpellcheck(event)">Hide spellcheck <span>Ctrl+Shift+K</span></div>
+
+      <div class="menu-footer">
+        <div class="menu-item">Turn on sync</div>
+        <div class="menu-item" onclick="window.location.href = 'sign-up.html'">Sign in</div>
+      </div>
+
+      <div class="preview" id="previewBox">
+        <h2>Live Preview</h2>
+        <p>This is the preview section.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="editor1">
+    <textarea id="editor" placeholder="Start writing..." spellcheck="true"></textarea>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

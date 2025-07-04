@@ -1,0 +1,203 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #111;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.topbar {
+  position: fixed;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 16px;
+  z-index: 1000;
+  color: #666;
+}
+
+.topbar .left i,
+.topbar .right i {
+  cursor: pointer;
+  color: #888;
+  font-size: 16px;
+  margin-left: 15px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+  flex-wrap: wrap;
+}
+
+.word-count {
+  font-size: 14px;
+  color: #555353;
+  cursor: pointer;
+}
+
+#editor1 {
+  padding: 90px 280px;
+  height: 100%;
+  width: 100%;
+}
+
+#editor1 textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  background: transparent;
+  color: rgb(25, 25, 27);
+  caret-color: #4285f4;
+  line-height: 1.6;
+  resize: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#editor1 textarea::placeholder {
+  color: #aaa;
+}
+
+.menu-button {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.submenu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: #2e2e2e;
+  color: #fff;
+  padding: 15px;
+  width: 260px;
+  display: none;
+  border-radius: 8px;
+  border: 1px solid #444;
+  z-index: 999;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.submenu h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #444;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.menu-footer {
+  margin-top: 10px;
+}
+
+.preview {
+  display: none;
+  margin-top: 15px;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ✅ DARK MODE STYLES */
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+body.dark-mode .topbar {
+  background-color: #222;
+  color: #f1f1f1;
+}
+
+body.dark-mode #editor1 textarea {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+body.dark-mode .submenu {
+  background-color: #333;
+  color: #fff;
+  border-color: #555;
+}
+
+body.dark-mode .preview {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-mode .menu-item {
+  border-bottom: 1px solid #555;
+}
+
+/* ✅ Responsive Layout */
+@media (max-width: 1024px) {
+  #editor1 {
+    padding: 90px 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .right {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  #editor1 {
+    padding: 80px 20px;
+  }
+
+  .submenu {
+    width: 90%;
+    right: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  #editor1 {
+    padding: 70px 15px;
+  }
+
+  .topbar {
+    font-size: 14px;
+  }
+
+  .menu-item {
+    font-size: 13px;
+  }
+
+  #editor1 textarea {
+    font-size: 18px;
+  }
+}
