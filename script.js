@@ -96,5 +96,103 @@ document.getElementById("copyBtn").addEventListener("click", () => {
     .then(() => alert("Text copied to clipboard!"))
     .catch((err) => alert("Failed to copy text: " + err));
 });
+let syncEnabled = false;
 
+// 🧠 Word & Character Count Function
+function updateCounts() {
+  const text = document.getElementById("editor").value;
+  const wordCount = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+  const charCount = text.length;
+
+  document.getElementById("wordCount").textContent = "Words: " + wordCount;
+  document.getElementById("charCount").textContent = "Characters: " + charCount;
+}
+
+// 🚀 On Page Load
+window.onload = function () {
+  const editor = document.getElementById("editor");
+
+  // 🌙 Restore Dark Mode
+  if (localStorage.getItem("darkMode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
+
+  // 🔁 Restore Sync & Content
+  if (localStorage.getItem("syncEnabled") === "true") {
+    syncEnabled = true;
+    const saved = localStorage.getItem("syncedText");
+    if (saved) editor.value = saved;
+
+    const btn = document.getElementById("syncToggle");
+    btn.textContent = "Syncing…";
+    btn.classList.add("syncing");
+  }
+
+  updateCounts(); // ✅ Count words/characters after loading
+};
+
+// 🟩 Toggle Dark Mode
+function toggleTheme(e) {
+  if (e) e.preventDefault();
+  const isDark = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("darkMode", isDark);
+}
+
+// 🟩 Toggle Fullscreen
+function toggleFullscreen(e) {
+  if (e) e.preventDefault();
+  const doc = document.documentElement;
+  if (!document.fullscreenElement) {
+    doc.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+// 🟩 Toggle Submenu
+function toggleMenu(e) {
+  if (e) e.preventDefault();
+  const submenu = document.getElementById("submenu");
+  submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+}
+
+// 🟩 Toggle Preview
+function togglePreview(e) {
+  if (e) e.preventDefault();
+  const preview = document.getElementById("previewBox");
+  preview.style.display = preview.style.display === "block" ? "none" : "block";
+}
+
+// 🟩 Toggle Spellcheck
+function toggleSpellcheck(e) {
+  if (e) e.preventDefault();
+  const editor = document.getElementById("editor");
+  editor.spellcheck = !editor.spellcheck;
+}
+
+// 🟩 Toggle Sync
+document.getElementById("syncToggle").addEventListener("click", () => {
+  syncEnabled = !syncEnabled;
+  const btn = document.getElementById("syncToggle");
+
+  if (syncEnabled) {
+    btn.textContent = "Syncing…";
+    btn.classList.add("syncing");
+    localStorage.setItem("syncEnabled", "true");
+    localStorage.setItem("syncedText", document.getElementById("editor").value);
+  } else {
+    btn.textContent = "Turn on sync";
+    btn.classList.remove("syncing");
+    localStorage.setItem("syncEnabled", "false");
+    localStorage.removeItem("syncedText");
+  }
+});
+
+// 🧠 Update on Input
+document.getElementById("editor").addEventListener("input", () => {
+  updateCounts();
+  if (syncEnabled) {
+    localStorage.setItem("syncedText", document.getElementById("editor").value);
+  }
+});
 
